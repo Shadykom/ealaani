@@ -1,0 +1,36 @@
+import { useState } from 'react';
+import { User, UserRole } from '../types/user';
+import { useAuth } from '../contexts/AuthContext';
+
+interface BillboardListingComponentProps {
+  onViewDetails: (billboardId: string) => void;
+  onShowOnMap: (billboardId: string) => void;
+  isAuthenticated?: boolean;
+  onAuthRequired?: () => void;
+}
+
+export default function BillboardListingComponent({ 
+  onViewDetails, 
+  onShowOnMap,
+  isAuthenticated = false,
+  onAuthRequired = () => {}
+}: BillboardListingComponentProps) {
+  // Existing component code...
+  
+  const handleBookBillboard = (billboardId: string) => {
+    if (!isAuthenticated) {
+      onAuthRequired();
+      return;
+    }
+    
+    // Proceed with booking logic
+    onViewDetails(billboardId);
+  };
+  
+  // Rest of the component remains the same, but add authentication checks
+  // to actions that require login
+  
+  return (
+    // Component JSX with updated handlers that check authentication
+  );
+}
